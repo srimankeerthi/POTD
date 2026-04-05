@@ -1,0 +1,31 @@
+class Solution_gfg_7 {
+    public String decodeCiphertext(String encodedText, int rows) {
+        int cols = encodedText.length() / rows;
+        
+        // Reconstruct the matrix
+        char[][] matrix = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = encodedText.charAt(i * cols + j);
+            }
+        }
+        
+        // Read diagonally (each diagonal starts at row 0, col j)
+        StringBuilder result = new StringBuilder();
+        for (int startCol = 0; startCol < cols; startCol++) {
+            int r = 0, c = startCol;
+            while (r < rows && c < cols) {
+                result.append(matrix[r][c]);
+                r++;
+                c++;
+            }
+        }
+        
+        // Strip trailing spaces
+        int end = result.length();
+        while (end > 0 && result.charAt(end - 1) == ' ') {
+            end--;
+        }
+        return result.substring(0, end);
+    }
+}
