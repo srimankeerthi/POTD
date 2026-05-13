@@ -1,6 +1,6 @@
 class Solution_leet_43 {
     public int findMotherVertex(int V, int[][] edges) {
-        // 1. Build Adjacency List
+
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         for (int i = 0; i < V; i++) adj.add(new ArrayList<>());
         for (int[] edge : edges) {
@@ -10,7 +10,7 @@ class Solution_leet_43 {
         boolean[] visited = new boolean[V];
         int lastFinishedVertex = 0;
 
-        // 2. Find the last finished vertex in DFS
+     
         for (int i = 0; i < V; i++) {
             if (!visited[i]) {
                 dfs(i, adj, visited);
@@ -18,8 +18,6 @@ class Solution_leet_43 {
             }
         }
 
-        // 3. Reset visited array and check if the lastFinishedVertex 
-        // can actually reach all other vertices
         Arrays.fill(visited, false);
         dfs(lastFinishedVertex, adj, visited);
 
