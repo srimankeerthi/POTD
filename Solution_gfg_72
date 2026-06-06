@@ -1,0 +1,25 @@
+class Solution_gfg_72 {
+    public long numOfWays(int n, int m) {
+        // Total squares on the board
+        long totalSquares = (long) n * m;
+        
+        // Total ways to place two distinct knights
+        long totalWays = totalSquares * (totalSquares - 1);
+        
+        // Count attacking combinations from 2x3 and 3x2 sub-grids
+        long attackingWays = 0;
+        
+        // Case 1: 2x3 sub-grids
+        if (n >= 2 && m >= 3) {
+            attackingWays += 4L * (n - 1) * (m - 2);
+        }
+        
+        // Case 2: 3x2 sub-grids
+        if (n >= 3 && m >= 2) {
+            attackingWays += 4L * (n - 2) * (m - 1);
+        }
+        
+        // Return valid arrangements
+        return totalWays - attackingWays;
+    }
+}
